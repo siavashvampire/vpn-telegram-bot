@@ -1,0 +1,3 @@
+start - start bot
+get_trading - give you a pridiction of trade that you select
+get_log - show your log of trading
