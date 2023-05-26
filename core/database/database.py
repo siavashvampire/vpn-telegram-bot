@@ -8,7 +8,7 @@ user = 'Comp_462_siavash'
 password = 'VamPire1468'
 host = '127.0.0.1'
 port = 3306
-database = 'Comp_462'
+database = 'vpn_tele_bot'
 
 
 def get_connection() -> Engine:
@@ -26,13 +26,9 @@ session = sessionmaker(bind=engine)()
 
 def create_db() -> None:
     from app.user.model.user_model import UserDB
-    from app.country.model.country_model import CountryModel
-    from app.market_trading.model.trading_model import TradingModel
     from app.logging.model.log_model import LogModel
 
     UserDB()
-    CountryModel()
-    TradingModel()
     LogModel()
     Base.metadata.create_all(engine)
 

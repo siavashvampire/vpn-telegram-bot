@@ -21,6 +21,8 @@ bot_admin_id: list[int] = data_all['bot_admin_id']
 telegram_api_id: int = data_all['telegram_api_id']
 telegram_bot_name: str = data_all['telegram_bot_name']
 telegram_api_hash: str = data_all['telegram_api_hash']
+xui_user_name: str = data_all['xui_user_name']
+xui_password: str = data_all['xui_password']
 
 
 def update_database(key: str, value: Union[int, float]) -> None:
