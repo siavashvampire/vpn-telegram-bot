@@ -27,8 +27,10 @@ session = sessionmaker(bind=engine)()
 def create_db() -> None:
     from app.user.model.user_model import UserDB
     from app.logging.model.log_model import LogModel
+    from app.cost.model.cost_model import CostModel
 
     UserDB()
+    CostModel()
     LogModel()
     Base.metadata.create_all(engine)
 

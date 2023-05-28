@@ -3,7 +3,7 @@ from pyrogram import Client
 from pyrogram.types import Message
 
 from app.logging.api import get_log_by_user
-from core.pyrogram.custom_filter import user_exist_filter
+from core.custom_filter.custom_filter import user_exist_filter
 from core.style.thumb import thumbs_up, thumbs_down
 
 

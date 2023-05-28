@@ -1,4 +1,5 @@
-from pyrogram.types import User
+from telegram import User
+
 from app.user.model.user_model import UserDB
 from core.database.database import session
 
@@ -35,3 +36,19 @@ def get_all_user() -> list[UserDB]:
 
 def check_exist_user(user_in: User) -> bool:
     return get_user(user=user_in).check_exist_user()
+
+
+def check_admin_user(user_in: User) -> bool:
+    return get_user(user=user_in).check_admin()
+
+
+def check_access_user(user_in: User) -> bool:
+    return get_user(user=user_in).check_access()
+
+
+def set_user_access(id_in: int, cond: str) -> None:
+    if cond == 'accept':
+        cond = 1
+    else:
+        cond = 0
+    get_user(id_in).change_access(cond)

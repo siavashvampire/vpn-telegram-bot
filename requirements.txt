@@ -1,7 +1,5 @@
-Pyrogram==2.0.106
-TgCrypto==1.2.5
 tinydb==4.7.1
-pyromod==2.0.0
 SQLAlchemy==2.0.15
 mysqlclient==2.1.1
 requests==2.31.0
+python-telegram-bot==20.3

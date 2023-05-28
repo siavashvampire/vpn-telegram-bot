@@ -12,10 +12,8 @@ db = TinyDB(db_path)
 db.drop_tables()
 table = db.table('config')
 
-if dev:
-    table.insert({'telegram_token': "5911882360:AAFQABCYQXObbISk4BGe4DE-_Vtxn39uQ1I"})
-else:
-    table.insert({'telegram_token': "5911882360:AAFQABCYQXObbISk4BGe4DE-_Vtxn39uQ1I"})
+
+table.insert({'telegram_token': "5911882360:AAFQABCYQXObbISk4BGe4DE-_Vtxn39uQ1I"})
 
 table.update({'telegram_api_id': 28040203})
 table.update({'telegram_bot_name': "siavash_vpn_tele_test"})

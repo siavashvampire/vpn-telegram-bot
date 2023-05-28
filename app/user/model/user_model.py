@@ -1,5 +1,5 @@
-from sqlalchemy import Column, String, Integer, BigInteger, DateTime
-from pyrogram.types import User
+from sqlalchemy import Column, String, Integer, BigInteger, DateTime, Boolean
+from telegram import User
 
 from core.config.database import bot_admin_id
 from core.database.Base import Base
@@ -15,22 +15,29 @@ class UserDB(User, Base):
     first_name = Column(String(50))
     last_name = Column(String(50))
     username = Column(String(50))
+    access = Column(Boolean, default=0)
     insert_time = Column(DateTime, default=datetime.now)
 
     def __init__(self, id: int = 0, username: str = "", first_name: str = "", last_name: str = "") -> None:
+        self._frozen = False
+
         try:
             temp: UserDB = session.query(UserDB).filter(UserDB.id == id).first()
+            if temp is None:
+                raise AttributeError
+
             self.id = temp.id
             self.user_id = temp.user_id
             self.first_name = temp.first_name
             self.last_name = temp.last_name
             self.username = temp.username
-            self.user_physics_user = temp.user_physics_user
+            self.access = temp.access
         except:
             self.id = id
             self.first_name = first_name
             self.last_name = last_name
             self.username = username
+            self.username = 0
 
         User.__init__(self=self, id=id, first_name=first_name, last_name=last_name, is_bot=False, username=username)
         Base.__init__(self)
@@ -54,6 +61,13 @@ class UserDB(User, Base):
 
     def check_admin(self) -> bool:
         return self.id in bot_admin_id
+
+    def check_access(self) -> bool:
+        return self.access
+
+    def change_access(self, cond: int) -> None:
+        self._frozen = False
+        self.access = cond
 
     def __repr__(self):
         return "<User(%r, %r)>" % (self.first_name, self.id)
